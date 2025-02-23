@@ -5,9 +5,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     unzip \
     psmisc \
-    python3 \
-    python3-pip \
-    python3-venv \
+    python \
+    python-pip \
+    python-venv \
     git \
     clang-12 \
     pkg-config \
@@ -27,8 +27,8 @@ RUN ci/env/install-bazel.sh
 #
 WORKDIR /ray/python
 RUN ls 
-RUN python3 -m pip install -r requirements.txt
-RUN python3 -m pip install -e . --verbose
+RUN python -m pip install -r requirements.txt
+RUN python -m pip install -e . --verbose
 
 CMD ["/bin/bash"]
 # # Copy the GPG file into the container
