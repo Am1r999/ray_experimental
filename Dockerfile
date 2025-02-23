@@ -26,8 +26,9 @@ RUN ci/env/install-bazel.sh
 # RUN npm run build
 #
 WORKDIR /ray/python
-RUN python pip install -r requirements.txt
-RUN python pip install -e . --verbose
+RUN ls 
+RUN python3 -m pip install -r requirements.txt
+RUN python3 -m pip install -e . --verbose
 
 CMD ["/bin/bash"]
 # # Copy the GPG file into the container
