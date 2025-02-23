@@ -16,14 +16,15 @@ RUN apt-get update && apt-get install -y \
 COPY . /ray
 WORKDIR /ray
 RUN ci/env/install-bazel.sh
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-RUN bash -c "source ~/.bashrc"
-RUN nvm install 14
-RUN nvm use 14
-WORKDIR /ray/python/ray/dashboard/client
-RUN npm ci
-RUN npm run build
-
+# Let's not Build the dashboard
+# RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# RUN bash -c "source ~/.bashrc"
+# RUN nvm install 14
+# RUN nvm use 14
+# WORKDIR /ray/python/ray/dashboard/client
+# RUN npm ci
+# RUN npm run build
+#
 WORKDIR /ray/python
 RUN pip install -r requirements.txt
 RUN pip install -e . --verbose
