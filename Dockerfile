@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     psmisc \
     python3 \
     python3-pip \
+    python3-dev \
     python3-venv \
     git \
     clang-12 \
@@ -27,7 +28,7 @@ RUN ci/env/install-bazel.sh
 # RUN npm run build
 #
 WORKDIR /ray/python
-RUN ls 
+RUN ln -s /usr/bin/python3 /usr/bin/python 
 RUN python3.10 -m pip install --upgrade pip
 RUN python3.10 -m pip install setuptools
 RUN python3.10 -m pip install python-dev-tools
