@@ -31,8 +31,8 @@ RUN ls
 RUN python3.10 -m pip install --upgrade pip
 RUN python3.10 -m pip install setuptools
 RUN python3.10 -m pip install python-dev-tools
-RUN python3.12 -m pip install -r requirements.txt
-RUN python3.12 -m pip install -e . --verbose
+RUN python3.10 -m pip install -r requirements.txt
+RUN python3.10 -m pip install -e . --verbose
 
 CMD ["/bin/bash"]
 # # Copy the GPG file into the container
