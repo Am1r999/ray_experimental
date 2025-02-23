@@ -28,8 +28,8 @@ RUN ci/env/install-bazel.sh
 #
 WORKDIR /ray/python
 RUN ls 
-RUN python3.12 -m pip install -r requirements.txt
-RUN python3.12 -m pip install -e . --verbose
+RUN python3.10 -m pip install -r requirements.txt
+RUN python3.10 -m pip install -e . --verbose
 
 CMD ["/bin/bash"]
 # # Copy the GPG file into the container
