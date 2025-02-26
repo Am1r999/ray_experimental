@@ -32,7 +32,7 @@ build_x86_64() {
   export UPLOAD_WHEELS_AS_ARTIFACTS=1
   export MAC_WHEELS=1
   export MAC_JARS=1
-  export RAY_INSTALL_JAVA=1
+  export RAY_INSTALL_JAVA=0
   export RAY_ENABLE_WINDOWS_OR_OSX_CLUSTER=1
   . ./ci/ci.sh init && source ~/.zshenv
   source ~/.zshrc
@@ -72,7 +72,7 @@ build_aarch64() {
   export UPLOAD_WHEELS_AS_ARTIFACTS=1
   export MAC_WHEELS=1
   export MAC_JARS=1
-  export RAY_INSTALL_JAVA=1
+  export RAY_INSTALL_JAVA=0
   export RAY_ENABLE_WINDOWS_OR_OSX_CLUSTER=1
   export MINIMAL_INSTALL=1
   . ./ci/ci.sh init && source ~/.zshenv
