@@ -50,7 +50,7 @@ dm_tree
 uvicorn
 scikit-image>=0.21.0
 prometheus_client>=0.7.1
-pandas
+#pandas
 tensorboardX
 aiohttp>=3.7
 starlette
