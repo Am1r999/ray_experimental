@@ -591,6 +591,9 @@ std::string PlasmaStore::GetDebugDump() const {
   auto num_pending_bytes = create_request_queue_.NumPendingBytes();
   buffer << num_pending_requests << " pending objects of total size "
          << num_pending_bytes / 1024 / 1024 << "MB\n";
+  buffer << "Edit here\n"
+  buffer << num_pending_requests << " pending objects of total size "
+         << num_pending_bytes << "B\n";  
   object_lifecycle_mgr_.GetDebugDump(buffer);
   return buffer.str();
 }
