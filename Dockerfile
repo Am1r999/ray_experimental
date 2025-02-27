@@ -28,6 +28,7 @@ RUN ci/env/install-bazel.sh
 # RUN npm run build
 #
 WORKDIR /ray/python
+RUN export RAY_BACKEND_LOG_LEVEL=debug
 RUN ln -s /usr/bin/python3 /usr/bin/python 
 RUN python3.10 -m pip install --upgrade pip
 RUN python3.10 -m pip install setuptools
@@ -35,6 +36,8 @@ RUN python3.10 -m pip install python-dev-tools
 RUN python3.10 -m pip install -r requirements.txt
 RUN python3.10 -m pip install -e . --verbose
 
+RUN rm -rf ..
+WORKDIR ~ 
 CMD ["/bin/bash"]
 # # Copy the GPG file into the container
 # COPY bazel-release.pub.gpg /tmp/bazel-release.pub.gpg

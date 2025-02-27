@@ -531,6 +531,10 @@ void ObjectManager::SendObjectChunk(const UniqueID &push_id,
   push_request.set_metadata_size(chunk_reader->GetObject().GetMetadataSize());
   RAY_LOG(INFO) << "Object size: " << chunk_reader->GetObject().GetObjectSize();
   RAY_LOG(INFO) << "Metadata size: " << chunk_reader->GetObject().GetMetadataSize();
+  RAY_LOG(DEBUG) << "Object size: " << chunk_reader->GetObject().GetObjectSize();
+  RAY_LOG(DEBUG) << "Metadata size: " << chunk_reader->GetObject().GetMetadataSize();
+  std::cout << "Object size: " << chunk_reader->GetObject().GetObjectSize();
+  std::cout << "Metadata size: " << chunk_reader->GetObject().GetMetadataSize();
   push_request.set_chunk_index(chunk_index);
 
   // read a chunk into push_request and handle errors.
