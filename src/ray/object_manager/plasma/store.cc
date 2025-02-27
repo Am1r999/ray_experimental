@@ -595,6 +595,7 @@ std::string PlasmaStore::GetDebugDump() const {
   buffer << num_pending_requests << " pending objects of total size "
          << num_pending_bytes << "B\n";  
   object_lifecycle_mgr_.GetDebugDump(buffer);
+  RAY_LOG(DEBUG) << "ARE WE COOL";
   return buffer.str();
 }
 
