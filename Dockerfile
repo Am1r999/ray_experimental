@@ -36,8 +36,6 @@ RUN python3.10 -m pip install python-dev-tools
 RUN python3.10 -m pip install -r requirements.txt
 RUN python3.10 -m pip install -e . --verbose
 
-WORKDIR ~ 
-RUN rm -rf /ray
 CMD ["/bin/bash"]
 # # Copy the GPG file into the container
 # COPY bazel-release.pub.gpg /tmp/bazel-release.pub.gpg
