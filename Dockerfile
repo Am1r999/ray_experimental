@@ -35,7 +35,7 @@ RUN python3.10 -m pip install setuptools
 RUN python3.10 -m pip install python-dev-tools
 RUN python3.10 -m pip install -r requirements.txt
 RUN python3.10 -m pip install -e . --verbose
-RUN python3.10 -m pip install pytorch
+RUN python -m pip install torch
 CMD ["/bin/bash"]
 # # Copy the GPG file into the container
 # COPY bazel-release.pub.gpg /tmp/bazel-release.pub.gpg
