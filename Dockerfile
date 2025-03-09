@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
+FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -36,5 +36,6 @@ RUN python3.10 -m pip install setuptools
 RUN python3.10 -m pip install python-dev-tools
 RUN python3.10 -m pip install -r requirements.txt
 RUN python3.10 -m pip install -e . --verbose
-RUN python -m pip install torch
+RUN python3.10 -m pip cache purge
+RUN python3 -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 CMD ["/bin/bash"]
