@@ -19,15 +19,15 @@ COPY . /ray
 WORKDIR /ray
 RUN ci/env/install-bazel.sh
 
-# Let's Build the dashboard
-RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.40.1/install.sh | bash \
-    && . $NVM_DIR/nvm.sh
-RUN nvm install 14 \
-    && nvm use 14
-WORKDIR /ray/python/ray/dashboard/client
-RUN npm ci
-RUN npm run build
-
+# Let's DON'T Build the dashboard
+# RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.40.1/install.sh | bash \
+#     && . $NVM_DIR/nvm.sh
+# RUN nvm install 14 \
+#     && nvm use 14
+# WORKDIR /ray/python/ray/dashboard/client
+# RUN npm ci
+# RUN npm run build
+#
 WORKDIR /ray/python
 RUN export RAY_BACKEND_LOG_LEVEL=debug
 RUN ln -s /usr/bin/python3 /usr/bin/python 
