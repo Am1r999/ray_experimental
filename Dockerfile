@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -18,15 +18,16 @@ RUN python3 --version
 COPY . /ray
 WORKDIR /ray
 RUN ci/env/install-bazel.sh
-# Let's not Build the dashboard
-# RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-# RUN bash -c "source ~/.bashrc"
-# RUN nvm install 14
-# RUN nvm use 14
-# WORKDIR /ray/python/ray/dashboard/client
-# RUN npm ci
-# RUN npm run build
-#
+
+# Let's Build the dashboard
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.40.1/install.sh | bash \
+    && . $NVM_DIR/nvm.sh
+RUN nvm install 14 \
+    && nvm use 14
+WORKDIR /ray/python/ray/dashboard/client
+RUN npm ci
+RUN npm run build
+
 WORKDIR /ray/python
 RUN export RAY_BACKEND_LOG_LEVEL=debug
 RUN ln -s /usr/bin/python3 /usr/bin/python 
@@ -37,21 +38,3 @@ RUN python3.10 -m pip install -r requirements.txt
 RUN python3.10 -m pip install -e . --verbose
 RUN python -m pip install torch
 CMD ["/bin/bash"]
-# # Copy the GPG file into the container
-# COPY bazel-release.pub.gpg /tmp/bazel-release.pub.gpg
-# # Add the GPG key
-# RUN gpg --dearmor < /tmp/bazel-release.pub.gpg > /usr/share/keyrings/bazel-archive-keyring.gpg
-#
-# # Add the Bazel repository
-# RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
-#
-# # Install Bazel
-# RUN apt update && apt install bazel-6.5.0 -y
-# RUN apt update && apt full-upgrade -y
-# RUN find / -iname "bazel-6.5.0" 2>/dev/null #&& which bazel-6.5.0
-# RUN ln -s /usr/bin/bazel-6.5.0 /usr/bin/bazel #&& which bazel
-# RUN pip cache purge && python3 -m pip install --no-cache-dir --upgrade pip
-# RUN pip install psutil setproctitle==1.2.2 colorama
-# COPY . ./ray 
-# WORKDIR /ray
-# RUN bash ./build.sh
